@@ -1,0 +1,39 @@
+@startuml "C4 Component Example"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+skinparam TitleFontSize 24
+title System Container Diagram for Example System
+
+Person(customerWithDescription, "Customer with Description", "A customer with a description")
+
+Boundary(components, "Components"){
+    Component(component1, "Component 1", "technology")
+    Component(component2, "Component 2", "technology", "description")    
+}
+
+Boundary(externalComponents, "External Components"){
+    Component_Ext(externalComponent1, "External Component 1", "technology")
+    Component_Ext(externalComponent2, "External Component 2", "technology", "description")    
+}
+
+Boundary(dbcomponents, "Db Components"){
+    ComponentDb(dbComponent1, "Db Component 1", "technology")
+    ComponentDb(dbComponent2, "Db Component 2", "technology", "description")    
+}
+
+Boundary(externalDbComponents, "External Db Components"){
+    ComponentDb_Ext(externalDbComponent1, "External Db Component 1", "technology")
+    ComponentDb_Ext(externalDbComponent2, "External Db Component 2", "technology", "description")    
+}
+
+Boundary(queueComponents, "Queue Components"){
+    ComponentQueue(queueComponent1, "Queue Component 1", "technology")
+    ComponentQueue(queueComponent2, "Queue Component 2", "technology", "description")    
+}
+
+Boundary(externalQueueComponents, "External Queue Components"){
+    ComponentQueue_Ext(externalQueueComponent1, "External Queue Component 1", "technology")
+    ComponentQueue_Ext(externalQueueComponent2, "External Queue Component 2", "technology", "description")    
+}
+
+@enduml

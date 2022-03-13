@@ -1,0 +1,49 @@
+@startuml "C4 Context Example with Relationships"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+skinparam TitleFontSize 24
+title System Context Diagram for Example System with Relationships
+
+LAYOUT_WITH_LEGEND()
+
+Person(customer, "Customer")
+Person(customerWithDescription, "Customer with Description", "A customer with a description")
+
+Person_Ext(externalCustomer, "External Customer")
+Person_Ext(externalCustomerWithDescription, "External Customer with Description", "An external customer with a description")
+
+Boundary(boundary, "Boundary"){
+
+    System(system, "System")
+    System(systemWithDescription, "System with Description", "This is a system with a description")
+
+    System_Ext(externalSystem, "External System")
+    System_Ext(externalSystemWithDescription, "External System with Description", "This is an external system with a description")
+
+}
+
+Enterprise_Boundary(enterpriseBoundary, "Enterprise Boundary"){
+
+    SystemDb(systemDb, "System Database")
+    SystemDb(systemDbWithDescription, "System Database with Description", "This is a system database with a description")
+
+    SystemDb_Ext(externalSystemDb, "External System Database")
+    SystemDb_Ext(externalSystemDbWithDescription, "External System Database with Description", "This is an external system database with a description")
+
+}
+
+System_Boundary(systemBoundary, "System Boundary"){
+
+    SystemQueue(systemQueue, "System Queue")
+    SystemQueue(systemQueueWithDescription, "System Queue with Description", "This is a system queue with a description")
+
+    SystemQueue_Ext(externalSystemQueue, "External System Queue")
+    SystemQueue_Ext(externalSystemQueueWithDescription, "External System Queue with Description", "This is a system queue with a description")    
+
+}
+
+Rel(customer, system, "Views requests")
+Rel(externalCustomer, externalSystem, "Views requests", "HTTPS")
+Rel(customerWithDescription, externalSystem, "Views requests", "HTTPS", "Here is a description")
+
+@enduml

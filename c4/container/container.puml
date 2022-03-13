@@ -1,0 +1,39 @@
+@startuml "C4 Container Example"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+skinparam TitleFontSize 24
+title System Container Diagram for Example System
+
+Person(customerWithDescription, "Customer with Description", "A customer with a description")
+
+Container_Boundary(containers, "Container Boundary"){
+    Container(container1, "Container with technology", "Container technology")
+    Container(container2, "Container with technology and description", "Container technology", "Container description")    
+}
+
+Container_Boundary(externalContainers, "External Container Boundary"){
+    Container_Ext(extContainer1, "External Container with technology", "Container technology")
+    Container_Ext(extContainer2, "External Container with technology and description", "Container technology", "Container description")    
+}
+
+Container_Boundary(dbContainers, "Db Container Boundary"){
+    ContainerDb(containerDb1, "Db Container with technology", "Container technology")
+    ContainerDb(containerDb2, "Db Container with technology and description", "Container technology", "Container description")    
+}
+
+Container_Boundary(externalDbContainers, "External Db Container Boundary"){
+    ContainerDb_Ext(extContainerDb1, "External Db Container with technology", "Container technology")
+    ContainerDb_Ext(extContainerDb2, "External Db Container with technology and description", "Container technology", "Container description")    
+}
+
+Container_Boundary(queueContainers, "Queue Container Boundary"){
+    ContainerQueue(queueContainer1, "Queue Container with technology", "Container technology")
+    ContainerQueue(queueContainer2, "Queue Container with technology and description", "Container technology", "Container description")    
+}
+
+Container_Boundary(externalQueueContainers, "External Queue Container Boundary"){
+    ContainerQueue_Ext(externalQueueContainer1, "External Queue Container with technology", "Container technology")
+    ContainerQueue_Ext(externalQueueContainer2, "External Queue Container with technology and description", "Container technology", "Container description")    
+}
+
+@enduml

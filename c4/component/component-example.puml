@@ -1,0 +1,45 @@
+@startuml "C4 Component Example"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+skinparam TitleFontSize 24
+title Component diagram for Internet Banking System - API Application
+
+Container(spa, "Single-Page Application", "JavaScript and Angular", "Provides all of the Internet banking functionality to customers via their web browser")
+Container(mobile, "Mobile App", "Xamarin", "Provides a limited subset of the Internet banking functionality to customers via their mobile device")
+
+Boundary(apiBoundary, "API Application"){
+    Component(signIn, "Sign In Controller", "Sprint MVC Rest Controller", "Allows users to sign in to the Internet Banking System")    
+    Component(reset, "Reset Password Controller", "Sprint MVC Rest Controller", "Allows users to reset their passwords with a single use URL")
+    Component(summary, "Accounts Summary Controller", "Spring MVC Rest Controller", "Provides customers with a summary of their bank accounts")
+    Component(security, "Security Component", "Spring Bean", "Provides functionality related to signing in, changing passwords, etc.")
+    Component(email, "Email Component", "Spring Bean", "Sends emails to users")
+    Component(facade, "Mainframe Banking System Facade", "Spring Bean", "A facade onto the mainframe banking system")
+}
+
+ContainerDb(db, "Database", "Oracle Database Schema", "Stores user registration information hashed authentication credentials, access logs, etc.")
+Container_Ext(emailSystem, "Email System", "Software System", "The internal Microsoft Exchange email system.")
+Container_Ext(mainframeSystem, "Mainframe Banking System", "Software System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+' Relationships
+Rel(spa, signIn, "Makes API calls to", "JSON/HTTPS")
+Rel(spa, reset, "Makes API calls to", "JSON/HTTPS")
+Rel(spa, summary, "Makes API calls to", "JSON/HTTPS")
+
+Rel(mobile, signIn, "Makes API calls to", "JSON/HTTPS")
+Rel(mobile, reset, "Makes API calls to", "JSON/HTTPS")
+Rel(mobile, summary, "Makes API calls to", "JSON/HTTPS")
+
+Rel_D(reset, security, "Uses")
+
+
+Rel_D(signIn, security, "Uses")
+Rel_D(security, db, "Reads from and writes to", "JDBC")
+
+Rel_D(reset, email, "Uses")
+Rel_D(email, emailSystem, "Sends email using")
+
+Rel_D(summary, facade, "Uses")
+Rel_D(facade, mainframeSystem, "Uses", "XML/HTTPS")
+
+@enduml

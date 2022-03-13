@@ -1,0 +1,35 @@
+@startuml "C4 Context Example"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+skinparam TitleFontSize 24
+title System Context Diagram for Example System
+
+LAYOUT_WITH_LEGEND()
+
+Boundary(default, "Default"){
+    Person(customer, "Customer")
+    Person(customerWithDescription, "Customer with Description", "A customer with a description")
+}
+
+Boundary(noSprite, "No Sprite"){
+    HIDE_PERSON_SPRITE()
+
+    Person(customer2, "Customer")
+    Person(customerWithDescription2, "Customer with Description", "A customer with a description")
+}
+
+Boundary(outline, "Outline"){
+    SHOW_PERSON_OUTLINE()
+
+    Person(customer3, "Customer")
+    Person(customerWithDescription3, "Customer with Description", "A customer with a description")
+}
+
+Boundary(portrait, "Portrait"){
+    SHOW_PERSON_PORTRAIT()
+
+    Person(customer4, "Customer")
+    Person(customerWithDescription4, "Customer with Description", "A customer with a description")
+}
+
+@enduml
