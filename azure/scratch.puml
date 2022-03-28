@@ -1,0 +1,17 @@
+@startuml scratch
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/master/dist
+!include AzurePuml/AzureCommon.puml
+!include AzurePuml/AzureC4Integration.puml
+
+!include AzurePuml/Databases/all.puml
+' !include AzurePuml/Databases/AzureDataFactory.puml
+' !include AzurePuml/Databases/AzureDataBricks.puml
+
+AzureDataFactory(adf, "Azure Data Factory", "Technology")
+AzureDataBricks(adb, "Azure Data Bricks", "Technology", "Description")
+
+Rel_R(adf, adb, "SQL")
+
+@enduml

@@ -1,35 +1,30 @@
 @startuml "C4 Container Example"
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-skinparam TitleFontSize 24
-title Container diagram for Internet Banking System
+Container(webApp, "Web Application", "React", "The front end of the application")
+ContainerDb(db, "Database", "Cosmos DB", "Stores the data for the application")
 
-Person(customer, "Personal Banking Customer", "A customer of the bank, with personal bank accounts.")
+' Vertical orientation
+' Rel(webApp, db, "Rel") ' -->>
+' BiRel(webApp, db, "BiRel") ' <<-->>
+' Rel_Back(webApp, db, "Rel_Back") ' <<--
 
-Container_Boundary(bankingSystem, "Internet Banking System"){
-    Container(webApp, "Web Application", "Java and Spring MVC", "Delivers the static content and the Internet banking single page application.")
-    Container(spa, "Single-Page Application", "JavaScript and Angular", "Provides all of the internet banking functionality to customers via their web browser.")    
-    Container(app, "Mobile App", "Xamarin", "Provides a limited subset of the Internet banking functionality to customers via their mobile device.")
-    ContainerDb(db, "Database", "Oracle Database Schema", "Stores user registration information, hashed authentication credentials, access logs, etc.")
-    Container(api, "API Application", "Java and Spring MVC", "Provides Internet banking functionality via a JSON/HTTPS API")
-}
+' Horizontal orientation
+' Rel_Neighbor(webApp, db, "Rel_Neighbor") ' ->>
+' BiRel_Neighbor(webApp, db, "BiRel_Neighbor") ' <<->>
+' Rel_Back_Neighbor(webApp, db, "Rel_Back_Neighbor") ' <<-
 
-Container_Ext(email, "Email System", "Software System", "The internet Microsoft Exchange email system")
-Container_Ext(mainframe, "Mainframe Banking System", "Software System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+' Rel_D(webApp, db, "Rel_D") ' -->>
+' Rel_Down(webApp, db, "Rel_Down") ' -->>
+' BiRel_D(webApp, db, "BiRel_D") ' <<-->>
+' BiRel_Down(webApp, db, "BiRel_Down") ' <<-->>
 
-Rel(customer, webApp, "Visits bigbank.com/ib", "HTTPS")
-Rel(customer, spa, "Views account balances, and makes payments using")
-Rel(customer, app, "Views account balances, and makes payments using")
+' Rel_L(webApp, db, "Rel_L") ' <<-
+' Rel_Left(webApp, db, "Rel_Left") ' <<-
+' BiRel_L(webApp, db, "BiRel_L") ' <<->>
+' BiRel_Left(webApp, db, "BiRel_Left") ' <<->>
 
-Rel_R(webApp, spa, "Delivers to the customer's web browser")
-
-Rel_L(api, db, "Reads from and writes to", "JDBC")
-Rel_D(api, mainframe, "Makes API calls to", "XML/HTTPS")
-
-Rel_D(spa, api, "Makes API calls to", "JSON/HTTPS")
-Rel_D(app, api, "Makes API calls to", "JSON/HTTPS")
-
-Rel_L(email, customer, "Sends email to")
-Rel_R(api, email, "Sends email using", "SMTP")
+' webApp ->> db
+webApp <<->> db
 
 @enduml
