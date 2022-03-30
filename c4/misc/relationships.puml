@@ -1,0 +1,19 @@
+' Vertical orientation
+' Rel(webApp, db, "Rel") ' -->>
+' BiRel(webApp, db, "BiRel") ' <<-->>
+' Rel_Back(webApp, db, "Rel_Back") ' <<--
+
+' Horizontal orientation
+' Rel_Neighbor(webApp, db, "Rel_Neighbor") ' ->>
+' BiRel_Neighbor(webApp, db, "BiRel_Neighbor") ' <<->>
+' Rel_Back_Neighbor(webApp, db, "Rel_Back_Neighbor") ' <<-
+
+' Rel_D(webApp, db, "Rel_D") ' -->>
+' Rel_Down(webApp, db, "Rel_Down") ' -->>
+' BiRel_D(webApp, db, "BiRel_D") ' <<-->>
+' BiRel_Down(webApp, db, "BiRel_Down") ' <<-->>
+
+' Rel_L(webApp, db, "Rel_L") ' <<-
+' Rel_Left(webApp, db, "Rel_Left") ' <<-
+' BiRel_L(webApp, db, "BiRel_L") ' <<->>
+' BiRel_Left(webApp, db, "BiRel_Left") ' <<->>
