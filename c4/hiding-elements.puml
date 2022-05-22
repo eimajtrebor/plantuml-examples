@@ -1,0 +1,28 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(a, "A", "Optional Description")
+Container(b, "B", "Technology", "Optional Description")
+System(c, "C", "Optional Description")
+Container(d, "D", "Technology", "Optional Description")
+
+Rel_R(a, b, "Label", "Optional Technology")
+Rel_R(c, d, "Label", "Optional Technology")
+
+a -[hidden]d- c
+
+@enduml
+
+@startuml
+
+[a]
+[b]
+[c]
+[d]
+
+a - b
+c - d
+
+a -[hidden]d- c
+
+@enduml
